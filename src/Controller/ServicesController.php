@@ -18,6 +18,7 @@ class ServicesController extends AbstractController
     public function services(Request $request, EntityManagerInterface $manager, UserInterface $user): Response
     {
 
+
         if ($request->request->get('silver-package') === "true")
         {
             AddUserPackage();
