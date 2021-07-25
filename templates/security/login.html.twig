@@ -37,18 +37,37 @@
 
               <div class="form-group field-text ">
                 <label for="inputUsername" >نام کاربری</label>
-                <input type="text" value="{{ last_username }}" placeholder="نام کاربری" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+                <input
+                        type="text" value="{{ last_username }}"
+                        placeholder="نام کاربری"
+                        name="username"
+                        id="inputUsername"
+                        class="form-control"
+                        autocomplete="username"
+                        required autofocus
+{#                        oninvalid="this.setCustomValidity('لطفا نام کابری را وارد کنید')"#}
+                >
               </div>
 
               <div class="form-group field-text">
                 <label for="inputPassword">رمز عبور</label>
-                <input type="password" name="password" id="inputPassword" placeholder="رمزعبور" class="form-control" autocomplete="current-password" required>
+                <input
+                        type="password"
+                         name="password"
+                        id="inputPassword"
+                        placeholder="رمزعبور"
+                        class="form-control"
+                        autocomplete="current-password"
+                        required
+{#                        oninvalid="this.setCustomValidity('لطفا رمزعبور را وارد کنید')"#}
+
+                >
               </div>
                <input type="hidden" name="_csrf_token"
                        value="{{ csrf_token('authenticate') }}"
                 >
                 <div class="form-check">
-                    <label class="form-check-label rem-check" dir="ltr">
+                    <label class="form-check-label rem-check" dir="rtl">
                         <input type="checkbox" name="_remember_me" class="form-check-input ">
                        من را به خاطر داشته باش
                     </label>

@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href={{ asset('css/register.css')}}>
+
+{% endblock %}
+
+
+{% block body %}
+
+
+{#    {% if app.user %}#}
+{#        <div class="mb-3">#}
+{#            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
+{#        </div>#}
+{#    {% endif %}#}
+
+
+
+    <section class="login-block" dir="rtl">
+
+      <div class="container">
+
+        <div class="row">
+          <div class=" login-sec">
+            <h2 class="text-center head-text">عضویت در سایت</h2>
+{#            <form class="login-form" method="post">#}
+                {{ form_start(registerForm) }}
+              <div class="form-group field-text ">
+                  {{ form_row(registerForm.firstName) }}
+                  {{ form_row(registerForm.lastName) }}
+                  {#                <label for="inputUsername" >نام کاربری</label>#}
+{#                <input type="text"  placeholder="نام کاربری" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>#}
+              </div>
+              <div class="form-group field-text">
+
+                  {{ form_row(registerForm.username) }}
+              </div>
+              <div class="form-group field-text">
+                  {{ form_row(registerForm.planePassword.first) }}
+                  {{ form_row(registerForm.planePassword.second) }}
+              </div>
+
+              <div class="form-group field-text">
+                  {{ form_row(registerForm.phone) }}
+              </div>
+              <div class="form-group field-text">
+                  {{ form_row(registerForm.email) }}
+              </div>
+                <div class="form-check">
+                    <label class="form-check-label rem-check" dir="ltr">
+                        <input type="checkbox" name="_remember_me" class="form-check-input ">
+                       من را به خاطر داشته باش
+                    </label>
+                    <button type="submit" class="btn btn-login float-right sign-in-but">ثبت &nbsp اطلاعات</button>
+                </div>
+                {{ form_end(registerForm) }}
+{#            </form>#}
+
+              <div class="copy-text"  style="font-weight: bold; font-size: 9pt">زندگی آسوده شعار ماست <i class="fa fa-heart"></i></div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{% endblock %}
+
+
+{#
+Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+See https://symfony.com/doc/current/security/remember_me.html
+
+#}
+
+{#              <div class="checkbox mb-3">#}
+{#                  <label>#}
+{#                      <input type="checkbox" > Remember me#}
+{#                  </label>#}
+{#              </div>#}

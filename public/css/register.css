@@ -1,0 +1,62 @@
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+.login-block{
+    background: #ffffff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #ffffff, #ffffff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #8ccdff, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    float:left;
+    width:100%;
+    padding : 50px 0;
+}
+.sign-in-but{
+    border-radius:20px 20px 20px 20px;
+    text-align: center;
+    font-family: "MM_Hekayat Farsi", serif ;
+    font-size: 15pt;
+    margin-top: 30px;
+    margin-right: 85px;
+}
+.head-text{
+    font-family: "B Roya", serif;
+    font-style: unset ;
+}
+
+.field-text{
+    font-family: "Vazir", serif;
+    font-weight: bold;
+    font-size: 14pt;
+    text-align: right;
+
+}
+.rem-check{
+    margin-left: 75px;
+    font-family: "Vazir", serif;
+}
+.error{
+    margin-top: -38px;
+    border-radius: 10px;
+    box-shadow:2px 3px 0 rgba(0,0,0,0.08);
+    margin-right: 34%;
+    width: 500px;
+    text-align: center;
+    font-family: WeblogmaYekan, serif;
+    font-size: 13pt;
+}
+
+.banner-sec{ background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
+.container{background: #e6fbff; border-radius: 10px; box-shadow:8px 15px 0 rgba(0,0,0,0.1);}
+.carousel-inner{border-radius:10px 10px 10px 10px;}
+.carousel-caption{text-align:left; left:5%;}
+.login-sec{padding: 50px 30px; position:relative;}
+.login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
+.login-sec .copy-text i{color:#FEB58A;}
+.login-sec .copy-text a{color:#E36262;}
+.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #DE6262;}
+.login-sec h2:after{content:" "; width:100px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+.btn-login{
+    background: #DE6262;
+    color:#fff;
+    font-weight:600;}
+.banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
+.banner-text h2{color:#fff; font-weight:600;}
+.banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
+.banner-text p{color:#fff;}

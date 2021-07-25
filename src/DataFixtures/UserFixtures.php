@@ -16,6 +16,9 @@ class UserFixtures extends Fixture
         $user->setLastName('am');
         $user->setEmail('dede');
         $user->setPassword('1234');
+        $user->setCreatedAt(new \DateTimeImmutable());
+        $user->setRoles(['USER_ROLE']);
+        $user->setPhone("12895946644");
         $manager->persist($user);
         $manager->flush();
     }
