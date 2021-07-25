@@ -3,21 +3,24 @@
 namespace App\Form;
 
 use App\Entity\User;
-use Doctrine\DBAL\Types\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', \Symfony\Component\Form\Extension\Core\Type\TextType::class,
+            ->add('firstName', TextType::class,
             [
                 'label'=>'نام',
                 'help' => 'لطفا نام خود را وارد کنید',
@@ -37,14 +40,14 @@ class RegistrationFormType extends AbstractType
                         ]
 
                 ])
-            ->add('username', null,
+            ->add('username', TextType::class,
                 [
                     'label'=>'نام کاربری',
                     'help' => 'لطفا یک نام کاربری برای خود انتخاب کرده و وارد کنید, شما با این نام در سایت شناخته خواهید شد.',
                     'attr'=>
                         [
                             'placeholder' => 'نام کاربری',
-                        ]
+                        ],
 
                 ])
             ->add('planePassword', RepeatedType::class,
@@ -68,9 +71,9 @@ class RegistrationFormType extends AbstractType
                                     new Length(
                                         [
                                             'min'=> 8,
-                                            'minMessage' => 'رمزعبور کتر از 8 کاراکتر است لطفا رمز طولانی تری انتخاب کنید.',
-                                            'max'=> 20,
-                                            'maxMessage' => 'Password is bigger than what i expected 😕'
+                                            'minMessage' => 'رمزعبور کمتر از 8 کاراکتر است لطفا رمز طولانی تری انتخاب کنید.',
+                                            'max'=> 16,
+                                            'maxMessage' => 'رمزعبور بیشتر از 16 کاراکتر است لطفا رمز کوتاه تری انتخاب کنید.'
                                         ]
                                     )
                                 ],
@@ -82,7 +85,7 @@ class RegistrationFormType extends AbstractType
                             'constraints'=>
                                 [
                                     new NotBlank([
-                                        'message'=>'Enter again to make sure you want this password🔑'
+                                        'message'=>'لطفا رمزعبور را تکرار کنید'
                                     ])
                                 ],
                             'attr'=>
@@ -100,7 +103,11 @@ class RegistrationFormType extends AbstractType
                 'attr'=>
                     [
                         'placeholder' => 'شماره تماس',
-                    ]
+                    ],
+                'constraints'=>[new Type([
+                    'type'=>'tel',
+                    'message'=>'شماره تلفن نامعتبر است'
+                ])]
             ])
             ->add('email', null,
                 [
@@ -110,6 +117,17 @@ class RegistrationFormType extends AbstractType
                         [
                             'placeholder' => 'ایمیل',
                         ]
+                ])
+            ->add('terms', CheckboxType::class,
+                [
+                    'label' => 'لطفا قوانین سایت و شیوه ی خدمات دهی ما را در مطالعه فرمایید',
+                    'mapped'=>false,
+                    'constraints'=>
+                        [
+                            new NotBlank([
+                                'message'=>'برای عضویت باید با قوانین مواقفت کنید'
+                            ])
+                        ],
                 ])
         ;
     }

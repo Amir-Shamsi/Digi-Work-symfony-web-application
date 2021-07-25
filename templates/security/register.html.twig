@@ -6,7 +6,13 @@
     {{ parent() }}
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href={{ asset('css/register.css')}}>
+<style>
+    .badge-danger {
+        color: #fff;
+        background-color: #dc3545;
 
+    }
+</style>
 {% endblock %}
 
 
@@ -25,43 +31,35 @@
 
       <div class="container">
 
-        <div class="row">
-          <div class=" login-sec">
+        <div class="row" style="">
+          <div class=" login-sec" >
             <h2 class="text-center head-text">عضویت در سایت</h2>
-{#            <form class="login-form" method="post">#}
-                {{ form_start(registerForm) }}
-              <div class="form-group field-text ">
-                  {{ form_row(registerForm.firstName) }}
-                  {{ form_row(registerForm.lastName) }}
-                  {#                <label for="inputUsername" >نام کاربری</label>#}
-{#                <input type="text"  placeholder="نام کاربری" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>#}
-              </div>
-              <div class="form-group field-text">
+                {{ form_start(registerForm,{attr: {novalidate: 'novalidate'}}) }}
+                  <div class="form-group field-text ">
+                      {{ form_row(registerForm.firstName) }}
+                      {{ form_row(registerForm.lastName) }}
+                  </div>
+                  <div class="form-group field-text">
+                      {{ form_row(registerForm.username)}}
+                  </div>
+                  <div class="form-group field-text">
+                      {{ form_row(registerForm.planePassword.first) }}
+                      {{ form_row(registerForm.planePassword.second) }}
+                  </div>
 
-                  {{ form_row(registerForm.username) }}
-              </div>
-              <div class="form-group field-text">
-                  {{ form_row(registerForm.planePassword.first) }}
-                  {{ form_row(registerForm.planePassword.second) }}
-              </div>
-
-              <div class="form-group field-text">
-                  {{ form_row(registerForm.phone) }}
-              </div>
-              <div class="form-group field-text">
-                  {{ form_row(registerForm.email) }}
-              </div>
-                <div class="form-check">
-                    <label class="form-check-label rem-check" dir="ltr">
-                        <input type="checkbox" name="_remember_me" class="form-check-input ">
-                       من را به خاطر داشته باش
-                    </label>
-                    <button type="submit" class="btn btn-login float-right sign-in-but">ثبت &nbsp اطلاعات</button>
-                </div>
+                  <div class="form-group field-text">
+                      {{ form_row(registerForm.phone) }}
+                  </div>
+                  <div class="form-group field-text" >
+                      {{ form_row(registerForm.email) }}
+                  </div>
+                    <div class="form-check" style="text-align: center " dir="ltr">
+                        {{ form_row(registerForm.terms) }}
+                        <button type="submit" style="margin: 10px 480px 30px 0" class="btn btn-login float-right sign-in-but">ثبت &nbsp اطلاعات</button>
+                    </div>
                 {{ form_end(registerForm) }}
-{#            </form>#}
 
-              <div class="copy-text"  style="font-weight: bold; font-size: 9pt">زندگی آسوده شعار ماست <i class="fa fa-heart"></i></div>
+              <div class="copy-text"  style="margin-right: 78px;font-weight: bold; font-size: 9pt">زندگی آسوده شعار ماست <i class="fa fa-heart"></i></div>
           </div>
 
 

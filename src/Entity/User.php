@@ -27,9 +27,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\NotBlank(
-     *     message="لطفا این قسمت را پر کنید."
-     * )
+     * @Assert\NotBlank(message="لطفا این قسمت را پر کنید.")
      */
     private $username;
 
@@ -62,7 +60,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Email()
+     * @Assert\Email(message="ایمیل را بدرستی وارد کنید ایمیل باید دارای @ و دامنه باشد")
      */
     private $email;
 

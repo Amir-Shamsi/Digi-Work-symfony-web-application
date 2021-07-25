@@ -21,7 +21,6 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $manager): Response
     {
-
         $form = $this->createForm(RegistrationFormType::class);
         $form->handleRequest($request);
 
@@ -32,16 +31,14 @@ class SecurityController extends AbstractController
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setPassword($passwordEncoder->encodePassword(
                 $user,
-                //Security::doubleHash(
-                password_hash($form['rawPassword']->getData(), PASSWORD_DEFAULT)
-            //)
+                $form['planePassword']->getData()
             ));
 
             $manager->persist($user);
             $manager->flush();
 
-            $this->addFlash('success', 'شما با موفقیت عضو شدید '.$user->getFirstname().' 😃');
-            return $this->redirectToRoute('app_register');
+            $this->addFlash('success', ' 😃'.$user->getFirstname().' شما با موفقیت عضو شدید حالا میتونی وارد شی ');
+            return $this->redirectToRoute('app_login');
         }
         return $this->render('security/register.html.twig', [
             'registerForm' => $form->createView(),

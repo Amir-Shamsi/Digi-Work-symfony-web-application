@@ -28,6 +28,15 @@
                <i class="fa fa-times-circle"></i>
                {{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
+        {% block show_massege %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success error" style="width: 600px;margin-right: 460px;">
+                    <i class="fa fa-check-circle"></i>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endblock %}
+
       <div class="container">
 
         <div class="row">
@@ -38,7 +47,12 @@
               <div class="form-group field-text ">
                 <label for="inputUsername" >نام کاربری</label>
                 <input
-                        type="text" value="{{ last_username }}"
+                        {% if error %}
+                                type="text" value="{{ last_username }}"
+                            {% else %}
+                                type="text" value=""
+
+                        {% endif %}
                         placeholder="نام کاربری"
                         name="username"
                         id="inputUsername"
@@ -67,12 +81,13 @@
                        value="{{ csrf_token('authenticate') }}"
                 >
                 <div class="form-check">
-                    <label class="form-check-label rem-check" dir="rtl">
-                        <input type="checkbox" name="_remember_me" class="form-check-input ">
+                    <label class="form-check-label rem-check" dir="ltr">
+                        <input type="checkbox" name="_remember_me" class="form-check-input">
                        من را به خاطر داشته باش
                     </label>
                     <button type="submit" class="btn btn-login float-right sign-in-but">ورود &nbsp; به  &nbsp;دیجی&zwnj;ورک</button>
                 </div>
+
             </form>
 
               <div class="copy-text"  style="font-weight: bold; font-size: 9pt">زندگی آسوده شعار ماست <i class="fa fa-heart"></i></div>
