@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
+use App\service\AddToUserCart;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,17 +17,22 @@ class ServicesController extends AbstractController
     /**
      * @Route("/services", name="app_services")
      */
-    public function services(Request $request, EntityManagerInterface $manager, UserInterface $user): Response
+    public function services(Request $request, EntityManagerInterface $manager): Response
     {
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        /**
+         * @var Product[]
+         */
+        $product = $repository->findAll();
 
 
         if ($request->request->get('silver-package') === "true")
-        {
-            AddUserPackage();
+        { //Todo: packages should replace by serial
+//            AddToUserCart::addToCart($manager, $user);
         }
         else if($request->request->get('bronze-package') === "true")
         {
-            dd('my bronze', $user);
+            dd('my bronze');
 
         }
         else if($request->request->get('gold-package') === "true")
@@ -34,7 +41,7 @@ class ServicesController extends AbstractController
         }
 
         return $this->render('services/services.html.twig', [
-            'controller_name' => 'ServicesController',
+            'products' => $product
         ]);
     }
 }
