@@ -105,7 +105,7 @@ class RegistrationFormType extends AbstractType
                         'placeholder' => 'شماره تماس',
                     ],
                 'constraints'=>[new Type([
-                    'type'=>'tel',
+                    'type'=>'numeric',
                     'message'=>'شماره تلفن نامعتبر است'
                 ])]
             ])

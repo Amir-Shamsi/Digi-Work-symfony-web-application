@@ -21,6 +21,9 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $manager): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_services');
+        }
         $form = $this->createForm(RegistrationFormType::class);
         $form->handleRequest($request);
 
@@ -33,6 +36,9 @@ class SecurityController extends AbstractController
                 $user,
                 $form['planePassword']->getData()
             ));
+            $user->setRoles([
+                'ROLE_USER'
+            ]);
 
             $manager->persist($user);
             $manager->flush();
@@ -52,9 +58,9 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-//         if ($this->getUser()) {
-//             return $this->redirectToRoute('app_homepage');
-//         }
+         if ($this->getUser()) {
+             return $this->redirectToRoute('app_services');
+         }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

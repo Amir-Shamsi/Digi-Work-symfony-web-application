@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}سرویس های دوره ای{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/services/plan-panel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/services/main.css') }}">
+    <style>
+        .pricing-table-border{
+            border-radius: 20px 20px 0 0;
+        }
+        .pricing-table-border-down{
+            border-radius: 20px 20px 20px 20px;
+        }
+        .inner-table-item{
+            width: 343px;
+            margin-right: -12.5px;
+            border-radius: 10px 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <form method="post">
+        <section class="login-block" dir="rtl">
+
+            <div>
+                <div class="container" >
+                    <div class="row text-center">
+                        <h1 class="heading-title" style="font-family: 'Vazir',serif">سرویس های دوره ای</h1>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="pricingTable purple pricing-table-border-down">
+                                <div class="pricingTable-header pricing-table-border">
+                                    <h3 style="font-family: 'Vazir',serif">
+                                        <i class="fa fa-circle" style="color: #bd8d7c"></i>
+                                        برنزی
+                                    </h3>
+                                    <span></span>
+                                </div>
+                                <div class="pricing-plans" style="font-family: 'Vazir',serif" >
+                                    <span class="price-value" style="margin-left: -18px"><i class="fa fa-usd"></i>
+                                        <span >۴</span>
+                                        <span style="font-size: 20pt" > میلیون تومان</span>
+                                    </span>
+                                    <span class="month" >/سالیانه</span>
+                                </div>
+                                <div class="pricingContent" style="background-color: #dec5c0">
+                                    <ul>
+                                        <li><b>50GB</b> Disk Space</li>
+                                        <li class="inner-table-item"><b>50</b> Email Accounts</li>
+                                        <li><b>50GB</b> Monthly Bandwidth</li>
+                                        <li class="inner-table-item"><b>10</b> subdomains</li>
+                                        <li><b>15</b> Domains</li>
+                                    </ul>
+                                </div><!-- CONTENT BOX-->
+                                    {% if is_granted('ROLE_USER') %}
+                                    <div class="pricingTable-sign-up">
+                                        <button name="bronze-package" value="true" type="submit" class="btn btn-block">اضافه به سبدکالا +</button>
+                                    </div>
+                                    {% else %}
+                                    <div class="pricingTable-sign-up">
+                                        <a href="{{ path('app_login') }}"  class="btn btn-block">ورود</a>
+                                    </div>
+                                    {% endif %}<!-- BUTTON BOX-->
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="pricingTable yellow pricing-table-border-down">
+                                <div class="pricingTable-header pricing-table-border"  >
+                                    <h3 style="font-family: 'Vazir',serif">
+                                        <i class="fa fa-circle" style="color: #e8ae42"></i>
+                                        طلایی
+                                    </h3>
+                                    <span></span>
+                                </div>
+                                <div class="pricing-plans" style="font-family: 'Vazir',serif" >
+                                    <span class="price-value" style="margin-left: -18px"><i class="fa fa-usd"></i>
+                                        <span >۱۰</span>
+                                        <span style="font-size: 20pt" > میلیون تومان</span>
+                                    </span>
+                                    <span class="month" >/سالیانه</span>
+                                </div>
+                                <div class="pricingContent" style="background-color: #ffebc6">
+                                    <ul>
+                                        <li><b>60GB</b > Disk Space</li>
+                                        <li  class="inner-table-item"><b>60</b> Email Accounts</li>
+                                        <li><b>60GB</b> Monthly Bandwidth</li>
+                                        <li  class="inner-table-item"><b>15</b> subdomains</li>
+                                        <li><b>20</b> Domains</li>
+                                    </ul>
+                                </div><!-- CONTENT BOX-->
+
+                                    {% if is_granted('ROLE_USER') %}
+                                        <div class="pricingTable-sign-up">
+                                            <button name="gold-package" value="true" type="submit" class="btn btn-block">اضافه به سبدکالا +</button>
+                                        </div>
+                                    {% else %}
+                                        <div class="pricingTable-sign-up">
+                                            <a href="{{ path('app_login') }}"  class="btn btn-block">ورود</a>
+                                        </div>
+                                    {% endif %}
+                        <!-- BUTTON BOX-->
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="pricingTable green pricing-table-border-down">
+                                <div class="pricingTable-header pricing-table-border" >
+                                    <h3>
+                                        <i class="fa fa-circle" style="color: #a0a0a0"></i>
+
+                                        نقره ای
+                                    </h3>
+                                    <span></span>
+                                </div>
+                                <div class="pricing-plans" style="font-family: 'Vazir',serif" >
+                                    <span class="price-value" style="margin-left: -18px"><i class="fa fa-usd"></i>
+                                        <span >۷</span>
+                                        <span style="font-size: 20pt" > میلیون تومان</span>
+                                    </span>
+                                    <span class="month" >/سالیانه</span>
+                                </div>
+                                <div class="pricingContent" style="background-color: #dedede">
+                                    <ul>
+                                        <li><b>70GB</b> Disk Space</li>
+                                        <li  class="inner-table-item"><b>70</b> Email Accounts</li>
+                                        <li><b>70GB</b> Monthly Bandwidth</li>
+                                        <li  class="inner-table-item"><b>20</b> subdomains</li>
+                                        <li><b>25</b> Domains</li>
+                                    </ul>
+                                </div><!-- CONTENT BOX-->
+
+                            {% if is_granted('ROLE_USER') %}
+                                <div class="pricingTable-sign-up">
+                                    <button name="silver-package" value="true" type="submit" class="btn btn-block">اضافه به سبدکالا +</button>
+                                </div>
+                            {% else %}
+                                <div class="pricingTable-sign-up">
+                                    <a href="{{ path('app_login') }}"  class="btn btn-block">ورود</a>
+                                </div>
+                            {% endif %}
+                                <!-- BUTTON BOX-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+{% endblock %}

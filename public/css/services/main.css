@@ -1,0 +1,8 @@
+.login-block{
+    background: #ffffff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #ffffff, #ffffff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, rgb(140, 205, 255), #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    float:left;
+    width:100%;
+    padding : 50px 0;
+}
