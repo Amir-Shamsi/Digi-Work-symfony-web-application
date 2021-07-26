@@ -23,14 +23,14 @@ class TicketFormType extends AbstractType
                     'mapped'=>false,
                     'required' => false,
                     'constraints' => [
-                        new File([
-                            'maxSize' => '5120k', //5MB
-                            'mimeTypes' => [
-                                'application/pdf',
-                                'application/x-pdf',
-                            ],
-                            'mimeTypesMessage' => 'Please upload a valid PDF document',
-                        ])
+//                        new File([
+//                            'maxSize' => '5120k', //5MB
+//                            'mimeTypes' => [
+//                                'application/pdf',
+//                                'application/x-pdf',
+//                            ],
+//                            'mimeTypesMessage' => 'لطفا یک عکس با فرمت های خواسته شده آپلود کنید',
+//                        ])
                     ],
                 ])
             ->add('reservedDate')

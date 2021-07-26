@@ -6,24 +6,11 @@
     {{ parent() }}
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href={{ asset('css/register.css')}}>
-    <style>
-        .badge-danger {
-            color: #fff;
-            background-color: #dc3545;
 
-        }
-    </style>
 {% endblock %}
 
 
 {% block body %}
-
-
-    {#    {% if app.user %}#}
-    {#        <div class="mb-3">#}
-    {#            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
-    {#        </div>#}
-    {#    {% endif %}#}
 
 
 
@@ -34,33 +21,34 @@
             <div class="row" style="">
                 <div class=" login-sec" >
                     <h2 class="text-center head-text">عضویت در سایت</h2>
-                    {{ form_start(ticketForm) }}
                     <div class="form-group field-text ">
-                        {{ form_row(ticketForm.productBrand) }}
-                        {{ form_row(ticketForm.productModel) }}
+                        <label for="inputPassword">نوع</label>
+                        <input type="text" disabled class="form-control" value="{{ ticket.productBrand }}">
+
+                        {{ ticket.productModel }}
                     </div>
                     <div class="form-group field-text">
-                        {{ form_row(ticketForm.problemSubject)}}
-                    </div>
-
-
-
-                    <div class="form-group field-text">
-                        {{ form_row(ticketForm.details) }}
+                        {{ ticket.problemSubject }}
                     </div>
 
 
-                    <div class="form-group field-text">
-                        {{ form_row(ticketForm.imageFile) }}
-                    </div>
 
                     <div class="form-group field-text">
-                        {{ form_row(ticketForm.reservedDate) }}
+                        {{ ticket.details }}
+                    </div>
+
+
+{#                    <div class="form-group field-text">#}
+{#                        {{ form_row(ticketForm.imageFile) }}#}
+{#                    </div>#}
+
+                    <div class="form-group field-text">
+{#                        {{ ticket.reservedDate }}#}
                     </div>
                     <div class="form-check" style="text-align: center " dir="ltr">
                         <button type="submit" style="margin: 10px 480px 30px 0" class="btn btn-login float-right sign-in-but">ثبت &nbsp اطلاعات</button>
                     </div>
-                    {{ form_end(ticketForm) }}
+
 
                     <div class="copy-text"  style="margin-right: 78px;font-weight: bold; font-size: 9pt">زندگی آسوده شعار ماست <i class="fa fa-heart"></i></div>
                 </div>

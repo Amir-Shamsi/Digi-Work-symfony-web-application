@@ -57,6 +57,11 @@ class Ticket
      */
     private $uploadedImagesFilename = [];
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $tracingNumber;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class Ticket
     public function setUploadedImagesFilename(?array $uploadedImagesFilename): self
     {
         $this->uploadedImagesFilename = $uploadedImagesFilename;
+
+        return $this;
+    }
+
+    public function getTracingNumber(): ?string
+    {
+        return $this->tracingNumber;
+    }
+
+    public function setTracingNumber(string $tracingNumber): self
+    {
+        $this->tracingNumber = $tracingNumber;
 
         return $this;
     }
