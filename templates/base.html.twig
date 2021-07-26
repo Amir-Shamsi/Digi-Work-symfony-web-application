@@ -84,6 +84,23 @@
                             </li>
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                   aria-expanded="false">
+{#                                    <i class="fa fa-ticket-alt"></i> #}
+                                     تیکت
+                                </a>
+                                <ul class="dropdown-menu drop-corner" style="margin-top: -7.5px;border-radius: 10px 10px 10px 10px; text-align: center">
+                                    <li class="nav-item"><a class="nav-link" style="border-radius: 10px 10px 10px 10px;" href="{{ path('app_ticket') }}">
+                                            <i class="fa fa-plus-circle" style="color: #4e555b"></i>
+                                            تیکت جدید</a></li>
+                                    <li class="nav-item"><a class="nav-link" style="border-radius: 10px 10px 10px 10px;" href="{{ path('app_get_receipt') }}">
+                                            <i class="fa fa-print"></i>
+                                            دریافت رسید
+                                        </a></li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                    aria-expanded="false">پکیج ها</a>
                                 <ul class="dropdown-menu drop-corner"
                                     style="margin-top: -7.5px;

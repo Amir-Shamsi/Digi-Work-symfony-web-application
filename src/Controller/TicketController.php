@@ -8,6 +8,8 @@ use App\Form\TicketFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
 use phpDocumentor\Reflection\Types\This;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +18,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 
+
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class TicketController extends AbstractController
 {
     /**
@@ -23,10 +29,6 @@ class TicketController extends AbstractController
      */
     public function ticket(Request $request, EntityManagerInterface $manager): Response
     {
-        if(!$this->getUser()){
-            return $this->redirectToRoute('app_login');
-        }
-
         $form = $this->createForm(TicketFormType::class);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
@@ -78,7 +80,7 @@ class TicketController extends AbstractController
     public function receipt(Session $session, EntityManagerInterface $manager): Response
     {
         $tracingNumber = $session->getFlashBag()->get('tracingNumber');
-        if(sizeof($tracingNumber)==0 || !$this->getUser()){
+        if(sizeof($tracingNumber)==0){
             return $this->redirectToRoute('app_login');
         }
 
@@ -93,6 +95,31 @@ class TicketController extends AbstractController
         return $this->render('ticket/receipt.html.twig',[
             'ticket'=>$ticket,
             'user'=>$user
+        ]);
+    }
+
+    /**
+     * @Route ("/get/receipt", name="app_get_receipt")
+     */
+    public function getReceipt(EntityManagerInterface $manager, Request $request): Response
+    {
+        /** @var User $user */
+        $user = $manager->getRepository(User::class)->findOneBy(
+            ['username' => $this->getUser()->getUsername()]
+        );
+        if($request->isMethod('POST'))
+        {
+            $this->addFlash('tracingNumber', $request->request->get('1'));
+            return $this->redirectToRoute('app_receipt');
+        }
+
+        /** @var Ticket[] $tickets */
+        $tickets = $manager->getRepository(Ticket::class)->findBy(
+            ['user' => $user]
+        );
+
+        return $this->render('ticket/getReceipt.html.twig', [
+            'tickets'=>$tickets
         ]);
     }
 }
