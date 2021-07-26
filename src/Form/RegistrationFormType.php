@@ -49,6 +49,7 @@ class RegistrationFormType extends AbstractType
                             'placeholder' => 'نام کاربری',
                         ],
 
+
                 ])
             ->add('planePassword', RepeatedType::class,
                 [

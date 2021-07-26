@@ -84,9 +84,21 @@ class User implements UserInterface
      */
     private $products;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="user")
+     */
+    private $tickets;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $personalId;
+
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->tickets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -100,7 +112,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
     public function setUsername(string $username): self
@@ -245,4 +257,47 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Ticket[]
+     */
+    public function getTickets(): Collection
+    {
+        return $this->tickets;
+    }
+
+    public function addTicket(Ticket $ticket): self
+    {
+        if (!$this->tickets->contains($ticket)) {
+            $this->tickets[] = $ticket;
+            $ticket->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicket(Ticket $ticket): self
+    {
+        if ($this->tickets->removeElement($ticket)) {
+            // set the owning side to null (unless already changed)
+            if ($ticket->getUser() === $this) {
+                $ticket->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPersonalId(): ?string
+    {
+        return $this->personalId;
+    }
+
+    public function setPersonalId(?string $personalId): self
+    {
+        $this->personalId = $personalId;
+
+        return $this;
+    }
+
 }

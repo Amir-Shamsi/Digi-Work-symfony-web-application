@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}عضویت{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -34,7 +34,7 @@
         <div class="row" style="">
           <div class=" login-sec" >
             <h2 class="text-center head-text">عضویت در سایت</h2>
-                {{ form_start(registerForm,{attr: {novalidate: 'novalidate'}}) }}
+                {{ form_start(registerForm) }}
                   <div class="form-group field-text ">
                       {{ form_row(registerForm.firstName) }}
                       {{ form_row(registerForm.lastName) }}
