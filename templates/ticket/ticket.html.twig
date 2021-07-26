@@ -6,71 +6,61 @@
     {{ parent() }}
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href={{ asset('css/register.css')}}>
-    <style>
-        .badge-danger {
-            color: #fff;
-            background-color: #dc3545;
 
-        }
+    <style>
+
     </style>
 {% endblock %}
 
 
 {% block body %}
-
-
-    {#    {% if app.user %}#}
-    {#        <div class="mb-3">#}
-    {#            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
-    {#        </div>#}
-    {#    {% endif %}#}
-
-
-
     <section class="login-block" dir="rtl">
+        <div class="container" style="background-color: #edf5ff">
+            <div class=" login-sec " >
+                <h2 class="text-center head-text">فرم مشخصات دستگاه</h2>
+                <h6 style="text-align: right; margin-bottom: 50px">
+                    شما می توانید از طریق فرم زیر مشخصات و مشکل دستگاه خود را ثبت نمایید تا تعمیرکاران ما در کوتاه ترین زمان جهت هماهنگی با شما تماس برقرار کنند.
+                </h6>
+                    <div class="row">
+                        <div class="col-md-12  mx-0">
+                                {{ form_start(ticketForm) }}
+                            <div class="row" >
+                                <div class="col field-text">
+                                    {{ form_row(ticketForm.productModel) }}
 
-        <div class="container">
+                                </div>
+                                <div class="col field-text">
+                                        {{ form_row(ticketForm.productBrand) }}
+                                </div>
+                            </div>
 
-            <div class="row" style="">
-                <div class=" login-sec" >
-                    <h2 class="text-center head-text">عضویت در سایت</h2>
-                    {{ form_start(ticketForm) }}
-                    <div class="form-group field-text ">
-                        {{ form_row(ticketForm.productBrand) }}
-                        {{ form_row(ticketForm.productModel) }}
+                                <div class="row">
+                                    <div class="col field-text">
+                                        {{ form_row(ticketForm.problemSubject)}}
+                                    </div>
+                                    <div class="col field-text" >
+                                        <div style="font-size: 13pt; margin-bottom: 10px">
+                                            عکس از دستگاه
+                                        </div>
+                                        <div style="font-size: 11pt">
+                                            {{ form_row(ticketForm.imageFile) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col field-text ">
+                                        {{ form_row(ticketForm.details) }}
+                                    </div>
+                                </div>
+                            <div class="form-check" style="text-align: center " dir="ltr">
+                                <button type="submit" style="margin: 10px 480px 30px 0" class="btn btn-login float-right sign-in-but">ثبت &nbsp اطلاعات</button>
+                            </div>
+                            {{ form_end(ticketForm) }}
+                        </div>
                     </div>
-                    <div class="form-group field-text">
-                        {{ form_row(ticketForm.problemSubject)}}
-                    </div>
-
-
-
-                    <div class="form-group field-text">
-                        {{ form_row(ticketForm.details) }}
-                    </div>
-
-
-                    <div class="form-group field-text">
-                        {{ form_row(ticketForm.imageFile) }}
-                    </div>
-
-                    <div class="form-group field-text">
-                        {{ form_row(ticketForm.reservedDate) }}
-                    </div>
-                    <div class="form-check" style="text-align: center " dir="ltr">
-                        <button type="submit" style="margin: 10px 480px 30px 0" class="btn btn-login float-right sign-in-but">ثبت &nbsp اطلاعات</button>
-                    </div>
-                    {{ form_end(ticketForm) }}
-
-                    <div class="copy-text"  style="margin-right: 78px;font-weight: bold; font-size: 9pt">زندگی آسوده شعار ماست <i class="fa fa-heart"></i></div>
-                </div>
-
-
-
             </div>
         </div>
     </section>
-
 {% endblock %}
 
 {% block javascripts %}

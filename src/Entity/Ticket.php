@@ -27,10 +27,6 @@ class Ticket
      */
     private $publishedAt;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $reservedDate;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -87,18 +83,6 @@ class Ticket
     public function setPublishedAt(\DateTimeImmutable $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
-
-        return $this;
-    }
-
-    public function getReservedDate(): ?\DateTimeInterface
-    {
-        return $this->reservedDate;
-    }
-
-    public function setReservedDate(\DateTimeInterface $reservedDate): self
-    {
-        $this->reservedDate = $reservedDate;
 
         return $this;
     }

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Ticket;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,17 +18,17 @@ class TicketFormType extends AbstractType
         $builder
             ->add('productModel', null,
                 [
-                    'label'=>'برند',
+                    'label'=>'برند*',
                     'help' => 'لطفا برند محصول را وارد کنید',
                     'attr'=>
                         [
-                            'placeholder' => 'برند',
+                            'placeholder' => 'شرکت سازنده',
                         ]
 
                 ])
             ->add('productBrand', null,
                 [
-                'label'=>'مدل',
+                'label'=>'مدل*',
                         'help' => 'لطفا مدل محصول را وارد کنید',
                         'attr'=>
                             [
@@ -37,7 +38,7 @@ class TicketFormType extends AbstractType
                     ])
             ->add('problemSubject', null,
                 [
-                    'label'=>'نوع مشکل',
+                    'label'=>'نوع مشکل*',
                     'help' => 'لطفا نوع مشکل که دستگاه دچار شده را انتخاب کنید',
                     'attr'=>
                         [
@@ -57,13 +58,13 @@ class TicketFormType extends AbstractType
                 ])
             ->add('imageFile', FileType::class,
                 [
-                    'label'=>'عکس از دستگاه',
+                    'label'=>' ',
                     'mapped'=>false,
                     'required' => false,
                     'help'=>'محل اضافه کردن عکس دستگاه',
                     'attr'=>
                         [
-                            'placeholder' => '      ..... .. ....    فرمت قابل قبول تصویر jpg, png',
+                            'placeholder' => ' ... .. .. ....    فرمت قابل قبول تصویر jpg, png و ...',
 
                         ],
                     'constraints' => [
@@ -76,18 +77,21 @@ class TicketFormType extends AbstractType
 //                            'mimeTypesMessage' => 'لطفا یک عکس با فرمت های خواسته شده آپلود کنید',
 //                        ])
                     ],
-                ])
-            ->add('reservedDate',  DateTimeType::class,[
-                'label'=>'تاریخ درخواستی',
-                'help' => 'لطفا تاریخ درخواستی را انتخاب کنید',
-                'widget'=>'single_text',
-                'attr'=>
-                    [
-                        'placeholder' => 'توضیحات تکمیلی',
-                    ]
+                ]);
+//            ->add('reservedDate',  DateType::class,[
+//                'label'=>'تاریخ درخواستی',
+//                'help' => 'لطفا تاریخ درخواستی را انتخاب کنید',
+//                'widget'=>'single_text',
+//                'days' => range(19,31),
+//                'years'=> range(2021, 2099),
+//                'attr'=>
+//                    [
+//                        'placeholder' => 'توضیحات تکمیلی',
+//                    ]
+//
+//            ]);
 
-            ])
-        ;
+        // user form
     }
 
     public function configureOptions(OptionsResolver $resolver)

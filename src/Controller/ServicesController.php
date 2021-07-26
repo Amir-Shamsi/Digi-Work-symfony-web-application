@@ -20,6 +20,7 @@ class ServicesController extends AbstractController
     public function services(Request $request, EntityManagerInterface $manager): Response
     {
         $repository = $this->getDoctrine()->getRepository(Product::class);
+
         /**
          * @var Product[]
          */

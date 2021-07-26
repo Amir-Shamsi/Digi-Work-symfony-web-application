@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Ticket;
+use App\Entity\User;
 use App\Form\TicketFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 class TicketController extends AbstractController
 {
     /**
-     * @Route("/ticket", name="app_ticket")
+     * @Route("/ticket/new", name="app_ticket")
      */
     public function ticket(Request $request, EntityManagerInterface $manager): Response
     {
@@ -30,31 +32,42 @@ class TicketController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $uploadedFile*/
             $uploadedFile = $form['imageFile']->getData();
-            $destination = $this->getParameter('kernel.project_dir').'\public\uploads';
-            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'-'.$uploadedFile->guessExtension();
+            if($uploadedFile) {
+                $destination = $this->getParameter('kernel.project_dir') . '\public\uploads';
+                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = Urlizer::urlize($originalFilename) . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
 
-            $uploadedFile->move(
-                $destination,
-                $newFilename
-            );
+                $uploadedFile->move(
+                    $destination,
+                    $newFilename
+                );
+            }
             /** @var Ticket $ticket */
             $ticket = $form->getData();
             $ticket->setPublishedAt(new \DateTimeImmutable());
             /** @var array $files $files */
-            $files = [$newFilename];
-            $ticket->setUploadedImagesFilename($files);
-
+            if($uploadedFile) {
+                $files = ['uploads\\'.$newFilename];
+                $ticket->setUploadedImagesFilename($files);
+            }
             $ticket->setTracingNumber('ticket'.'-'.uniqid());
+
+            /** @var User $user*/
+            $user = $manager->getRepository(User::class)->findOneBy(
+                ['username' => $this->getUser()->getUsername()]
+            );
+
+            $ticket->setUser($user);
+
             $manager->persist($ticket);
             $manager->flush();
 
-            $ticket->setUser($this->getUser());
+
 
             $this->addFlash('tracingNumber', $ticket->getTracingNumber());
             return $this->redirectToRoute('app_receipt');
         }
-        return $this->render('ticket/ticket2.html.twig', [
+        return $this->render('ticket/ticket.html.twig', [
             'ticketForm' => $form->createView()
         ]);
     }
@@ -65,19 +78,21 @@ class TicketController extends AbstractController
     public function receipt(Session $session, EntityManagerInterface $manager): Response
     {
         $tracingNumber = $session->getFlashBag()->get('tracingNumber');
-//        if($tracingNumber==0 || !$this->getUser()){
-//            return $this->redirectToRoute('app_login');
-//        }
-        $tracingNumber ='ticket-60fe6bafa7efb';
+        if(sizeof($tracingNumber)==0 || !$this->getUser()){
+            return $this->redirectToRoute('app_login');
+        }
 
         /** @var Ticket $ticket */
-        $ticket = $manager->getRepository(Ticket::class)->findBy(
+        $ticket = $manager->getRepository(Ticket::class)->findOneBy(
             ['tracingNumber' => $tracingNumber]
         );
 
+        /** @var User $user*/
+        $user = $this->getUser();
 
         return $this->render('ticket/receipt.html.twig',[
-            'ticket'=>$ticket[0]
+            'ticket'=>$ticket,
+            'user'=>$user
         ]);
     }
 }

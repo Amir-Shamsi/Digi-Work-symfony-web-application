@@ -6,60 +6,119 @@
     {{ parent() }}
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href={{ asset('css/register.css')}}>
+    <link rel="stylesheet" type="text/css" href={{ asset('css/reciept.css')}}>
 
+    <style>
+
+    </style>
 {% endblock %}
 
 
 {% block body %}
-
-
-
-    <section class="login-block" dir="rtl">
-
-        <div class="container">
-
-            <div class="row" style="">
-                <div class=" login-sec" >
-                    <h2 class="text-center head-text">عضویت در سایت</h2>
-                    <div class="form-group field-text ">
-                        <label for="inputPassword">نوع</label>
-                        <input type="text" disabled class="form-control" value="{{ ticket.productBrand }}">
-
-                        {{ ticket.productModel }}
-                    </div>
-                    <div class="form-group field-text">
-                        {{ ticket.problemSubject }}
-                    </div>
-
-
-
-                    <div class="form-group field-text">
-                        {{ ticket.details }}
-                    </div>
-
-
-{#                    <div class="form-group field-text">#}
-{#                        {{ form_row(ticketForm.imageFile) }}#}
-{#                    </div>#}
-
-                    <div class="form-group field-text">
-{#                        {{ ticket.reservedDate }}#}
-                    </div>
-                    <div class="form-check" style="text-align: center " dir="ltr">
-                        <button type="submit" style="margin: 10px 480px 30px 0" class="btn btn-login float-right sign-in-but">ثبت &nbsp اطلاعات</button>
-                    </div>
-
-
-                    <div class="copy-text"  style="margin-right: 78px;font-weight: bold; font-size: 9pt">زندگی آسوده شعار ماست <i class="fa fa-heart"></i></div>
+<section class="login-block" dir="rtl">
+    <div class="container" style="background-color: #edf5ff; ">
+        <div class=" login-sec " dir="rtl" style="text-align: right">
+                <div class="page-header head-success">
+                    <h1>
+                        <i class="fa fa-check-circle"></i>
+                        تیکت شما با موفقیت ایجاد شد
+                    </h1>
                 </div>
 
+                    <div class="row" style="font-family: Vazir, Serif">
+                        <div class=" col-md-offset-3 ">
+                            <div class="col-md-12">
 
+                                <div class="row" >
+                                    <div class="col-md-12 text-center" style="margin-top: 50px">
+                                        <h2 style="font-size: 20pt;">کد پیگیری:</h2>
+                                        <h5 style="margin-top: -10px; margin-bottom: 40px; color: #1c7430">{{ ticket.tracingNumber }}</h5>
+                                    </div>
+                                </div> <br />
+                                <div>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <h5>توضیحات</h5>
+                                            </th>
+                                            <th>
+                                                <h5></h5>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="col-md-9">برند:</td>
+                                            <td class="col-md-3">
+                                                {{ ticket.productBrand }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-9">مدل:</td>
+                                            <td class="col-md-3">
+                                                {{ ticket.productModel }}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="col-md-9">نوع مشکل:</td>
+                                            <td class="col-md-3">
+                                                {{ ticket.problemSubject }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-9">توضیحات تکمیلی:</td>
+                                            <td class="col-md-3">
+                                                {% if ticket.details != "" %}
+                                                    {{ ticket.details }}
+                                                {% else %}
+                                                    بدون توضیحات
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-md-9">عکس دستگاه:</td>
+                                            <td class="col-md-3">
+                                                {% if  ticket.uploadedImagesFilename|length > 0 %}
+                                                    {% for imageFile in ticket.uploadedImagesFilename %}
+
+                                                        <img src= " {{ asset(imageFile) }}" alt="{{ asset(imageFile) }}" class="img-thumbnail">
+                                                    {% endfor %}
+                                                {% else %}
+                                                   عکسی پیوست نشده است
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <p> <strong>کد پیگیری:</strong> </p>
+                                                <p> <strong>تاریخ ثبت درخواست:</strong> </p>
+                                                <p> <strong>طرف درخواست: </strong> </p>
+                                                <p> <strong>شماره موبایل: </strong> </p>
+                                            </td>
+                                            <td>
+                                                <p> <strong> {{ ticket.tracingNumber }} </strong> </p>
+                                                <p> <strong> {{ ticket.publishedAt|date("d/m/Y", false) }}</strong> </p>
+                                                <p> <strong>
+                                                        {{ user.firstName }}
+                                                        {{ user.lastName }} </strong> </p>
+                                                <p> <strong> {{ user.phone }}</strong> </p>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
             </div>
         </div>
-    </section>
-
-{% endblock %}
+</section>
+    {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
