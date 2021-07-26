@@ -3,31 +3,32 @@
 namespace App\Controller;
 
 use App\Entity\Ticket;
-use App\Form\RegistrationFormType;
 use App\Form\TicketFormType;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
-use http\Exception\UnexpectedValueException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\User\UserInterface;
+
 
 class TicketController extends AbstractController
 {
     /**
      * @Route("/ticket", name="app_ticket")
      */
-    public function ticket(Request $request, EntityManagerInterface $manager, UserInterface $user): Response
+    public function ticket(Request $request, EntityManagerInterface $manager): Response
     {
+        if(!$this->getUser()){
+            return $this->redirectToRoute('app_login');
+        }
+
         $form = $this->createForm(TicketFormType::class);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-           /** @var UploadedFile $uploadedFile*/
+            /** @var UploadedFile $uploadedFile*/
             $uploadedFile = $form['imageFile']->getData();
             $destination = $this->getParameter('kernel.project_dir').'\public\uploads';
             $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -48,12 +49,12 @@ class TicketController extends AbstractController
             $manager->persist($ticket);
             $manager->flush();
 
-            $ticket->setUser($user);
+            $ticket->setUser($this->getUser());
 
             $this->addFlash('tracingNumber', $ticket->getTracingNumber());
             return $this->redirectToRoute('app_receipt');
         }
-        return $this->render('ticket/ticket.html.twig', [
+        return $this->render('ticket/ticket2.html.twig', [
             'ticketForm' => $form->createView()
         ]);
     }

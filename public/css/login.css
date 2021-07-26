@@ -43,7 +43,7 @@
 }
 
 .banner-sec{ background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
-.container{background: #e6fbff; border-radius: 10px; box-shadow:8px 15px 0 rgba(0,0,0,0.1);}
+.container{background: #e6fbff; border-radius: 10px;     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);}
 .carousel-inner{border-radius:10px 10px 10px 10px;}
 .carousel-caption{text-align:left; left:5%;}
 .login-sec{padding: 50px 30px; position:relative;}

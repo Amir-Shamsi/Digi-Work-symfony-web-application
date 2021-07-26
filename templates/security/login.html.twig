@@ -58,9 +58,7 @@
                         id="inputUsername"
                         class="form-control"
                         autocomplete="username"
-                        required autofocus
-{#                        oninvalid="this.setCustomValidity('لطفا نام کابری را وارد کنید')"#}
-                >
+                        required autofocus >
               </div>
 
               <div class="form-group field-text">
@@ -72,10 +70,7 @@
                         placeholder="رمزعبور"
                         class="form-control"
                         autocomplete="current-password"
-                        required
-{#                        oninvalid="this.setCustomValidity('لطفا رمزعبور را وارد کنید')"#}
-
-                >
+                        required >
               </div>
                <input type="hidden" name="_csrf_token"
                        value="{{ csrf_token('authenticate') }}"
