@@ -6,16 +6,23 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
+
+    private $lang;
+
     /**
      * @Route("/register", name="app_register")
      */
@@ -53,21 +60,30 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/{_locate<%app.supported_locales%>}/login", defaults={"_locate"="fa"}, name="app_login")
+
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
+    public function login(AuthenticationUtils $authenticationUtils, Request $request, $_locate){
          if ($this->getUser()) {
              return $this->redirectToRoute('app_services');
          }
-
+         $request->setLocale($_locate);
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig',
+            [
+                'last_username' => $lastUsername,
+                'error' => $error,
+                'lang'=> $_locate
+        ]);
     }
+
+
+
+
 
     /**
      * @Route("/logout", name="app_logout")

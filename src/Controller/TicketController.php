@@ -109,7 +109,7 @@ class TicketController extends AbstractController
         );
         if($request->isMethod('POST'))
         {
-            $this->addFlash('tracingNumber', $request->request->get('1'));
+            $this->addFlash('tracingNumber', $request->request->get('tracingNumber'));
             return $this->redirectToRoute('app_receipt');
         }
 

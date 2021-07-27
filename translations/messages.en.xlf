@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fa" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="bSrm84w" resname="ورود به حساب">
+        <source>ورود به حساب</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="Fz.sYBm" resname="نام کاربری">
+        <source>نام کاربری</source>
+        <target>Username</target>
+      </trans-unit>
+      <trans-unit id="nRNTKa1" resname="رمز عبور">
+        <source>رمز عبور</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="LIHXlQp" resname="من را به خاطر داشته باش">
+        <source>من را به خاطر داشته باش</source>
+        <target>Remember Me</target>
+      </trans-unit>
+      <trans-unit id="U6FLtLC" resname="ورود به دیجی ورک">
+        <source>ورود به دیجی ورک</source>
+        <target>Submit</target>
+      </trans-unit>
+      <trans-unit id="48moj8J" resname="زندگی آسوده شعار ماست">
+        <source>زندگی آسوده شعار ماست</source>
+        <target>Your good life is our pleasure</target>
+      </trans-unit>
+      <trans-unit id="u9jveeo" resname="زندگی کن">
+        <source>زندگی کن</source>
+        <target>Live</target>
+      </trans-unit>
+      <trans-unit id="O1h.lq0" resname="با دیجی ورک با خیالی آسوده زندگی کنید و کار های فنی تخصصی خود را به ما بسپارید">
+        <source>با دیجی ورک با خیالی آسوده زندگی کنید و کار های فنی تخصصی خود را به ما بسپارید</source>
+        <target>Live comfortably with DigiWork and leave your specialized technical work to us</target>
+      </trans-unit>
+      <trans-unit id="fMtdR2I" resname="اطلاعات ورودی اشتباه است! لطفا دوباره تلاش کنید">
+        <source>اطلاعات ورودی اشتباه است! لطفا دوباره تلاش کنید</source>
+        <target>Invalid credentials</target>
+      </trans-unit>
+      <trans-unit id="2_ksFZ4" resname="خطا توکن نامعتبر میباشد!">
+        <source>خطا توکن نامعتبر میباشد!</source>
+        <target>Invalid CSRF token.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
