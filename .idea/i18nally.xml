@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="i18nAllyConfiguration">
+    <version>1.0</version>
+    <profiles>
+      <profile id="1b67f0ab-0973-4d45-9c2f-f89904679aa8">
+        <option name="sinkFileUpdateEnabled" value="true" />
+        <name>Symfony (PHP, TWIG)</name>
+        <keyNamingPattern>SNAKE_CASE_PATTERN</keyNamingPattern>
+        <sink>
+          <multiNameSpaceSink id="1d075fe0-2fe4-4ee2-a39e-9a67dee6924b">
+            <translationsDirectory>$PROJECT_DIR$/translations</translationsDirectory>
+            <defaultLocale>en</defaultLocale>
+            <fileType>XliffFileType</fileType>
+            <outputFileNameTemplate>%namespace%.%locale%.xlf</outputFileNameTemplate>
+            <namespaces>
+              <set>
+                <option value="messages" />
+              </set>
+            </namespaces>
+            <placeholderFormatterName>SYMFONY_REPLACEMENT</placeholderFormatterName>
+            <nestingType>disabled</nestingType>
+          </multiNameSpaceSink>
+        </sink>
+        <sources>
+          <plainphp id="5f55d28c-35c9-4f04-9371-881cd4d48b23">
+            <functionName>$this-&gt;translator-&gt;trans</functionName>
+            <argumentsTemplate>'%key%', %map%, '%namespace%'</argumentsTemplate>
+            <sprintfMode>false</sprintfMode>
+            <scopePattern>file[work-shop]:src//*&amp;&amp;!file[work-shop]:src/DataFixtures//*</scopePattern>
+            <scopeName>i18n Ally: Symfony/PHP source</scopeName>
+            <skipDefaultNamespace>true</skipDefaultNamespace>
+          </plainphp>
+          <twig id="5d94bafb-9255-4b80-b613-0b663e8acc6b">
+            <inlineTagNames>
+              <set>
+                <option value="a" />
+                <option value="abbr" />
+                <option value="acronym" />
+                <option value="b" />
+                <option value="bdi" />
+                <option value="bdo" />
+                <option value="big" />
+                <option value="br" />
+                <option value="cite" />
+                <option value="code" />
+                <option value="data" />
+                <option value="del" />
+                <option value="dfn" />
+                <option value="em" />
+                <option value="i" />
+                <option value="img" />
+                <option value="input" />
+                <option value="ins" />
+                <option value="kbd" />
+                <option value="label" />
+                <option value="mark" />
+                <option value="meter" />
+                <option value="output" />
+                <option value="progress" />
+                <option value="q" />
+                <option value="ruby" />
+                <option value="s" />
+                <option value="samp" />
+                <option value="slot" />
+                <option value="small" />
+                <option value="span" />
+                <option value="strong" />
+                <option value="sub" />
+                <option value="sup" />
+                <option value="time" />
+                <option value="u" />
+                <option value="tt" />
+                <option value="var" />
+                <option value="wbr" />
+              </set>
+            </inlineTagNames>
+            <translatableAttributeNames>
+              <set>
+                <option value="title" />
+                <option value="alt" />
+                <option value="placeholder" />
+                <option value="label" />
+                <option value="aria-label" />
+              </set>
+            </translatableAttributeNames>
+            <filterName>trans</filterName>
+            <argumentsTemplate>%map%, '%namespace%'</argumentsTemplate>
+            <scopePattern>file[work-shop]:templates//*</scopePattern>
+            <scopeName>i18n Ally: Symfony/Twig templates</scopeName>
+            <skipDefaultNamespace>true</skipDefaultNamespace>
+          </twig>
+        </sources>
+      </profile>
+    </profiles>
+    <ignores>
+      <valuesInProject />
+      <valuesInFile />
+      <filesInProject />
+      <unignoredFunctionNames>
+        <set />
+      </unignoredFunctionNames>
+      <unignoredFunctionArguments>
+        <map />
+      </unignoredFunctionArguments>
+      <ignoredArrayKeys>
+        <set />
+      </ignoredArrayKeys>
+    </ignores>
+  </component>
+</project>
