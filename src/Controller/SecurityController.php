@@ -20,9 +20,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
-
-    private $lang;
-
     /**
      * @Route("/register", name="app_register")
      */
