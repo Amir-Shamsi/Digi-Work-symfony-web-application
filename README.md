@@ -1,1 +1,1 @@
-# Digi Work symfony-web-application
+# Digi Work Symfony Web Application
