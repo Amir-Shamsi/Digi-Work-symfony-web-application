@@ -20,3 +20,4 @@ a ticket system for sending technicians and answering people's technical questio
   ```sh
   symfony serve
   ```
+5. Open `127.0.0.1:8000` in your browser
